@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = () => {
   const [selectedId, setSelectedId] = useState("home");
+
   const sideBarData = {
     mainTabs: [
       {
@@ -61,12 +63,12 @@ const Sidebar = () => {
         id: "ThapaTechnical",
       },
       {
-        logo: "https://pickaface.net/gallery/avatar/Waffles7531915b07087b.png",
+        logo: "https://yt3.ggpht.com/ytc/AKedOLQ3Z7pv5rHx8sB1D22KKCWA_kFQ4S3HIUHsxm9jcA=s88-c-k-c0x00ffffff-no-rj",
         name: "CarryisLive",
         id: "CarryisLive",
       },
       {
-        logo: "https://yt3.ggpht.com/ytc/AKedOLQ3Z7pv5rHx8sB1D22KKCWA_kFQ4S3HIUHsxm9jcA=s88-c-k-c0x00ffffff-no-rj",
+        logo: "https://yt3.ggpht.com/l8CPpluol0brprHG9dZMaD7AJ2XrngeNs_oy85XUqdkLi5E3PhCu7VmP_HsRM8yUk-suL-7ImQ=s88-c-k-c0x00ffffff-no-rj",
         name: "T-Series",
         id: "TSeries",
       },
@@ -148,15 +150,33 @@ const Sidebar = () => {
       },
     ],
   };
+
   return (
     <>
-      <div className="sidebarSection">
-        <div className="sidebarContainer">
+      <div className="sidebarSection close" id="sidebarContainer">
+        <div className="miniSidebar" id="miniSidebar">
+          {sideBarData.mainTabs.map((tab, i) => {
+            return (
+              <div
+                key={i}
+                className={`miniSidebarTab ${
+                  tab.icon === selectedId && "active"
+                }`}
+                onClick={() => setSelectedId(tab.icon)}
+              >
+                <span className="material-symbols-rounded">{tab.icon}</span>
+                <p>{tab.head}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="sidebarContainer" id="sidebarContainer">
           <div className="sideBarTabs">
             <div className="tabContainer">
-              {sideBarData.mainTabs.map((tab) => {
+              {sideBarData.mainTabs.map((tab, i) => {
                 return (
                   <div
+                    key={i}
                     className={`sidebarTab ${
                       tab.icon === selectedId && "active"
                     }`}
@@ -170,9 +190,10 @@ const Sidebar = () => {
             </div>
             <div className="horizontalLine" style={{ margin: "10px 0" }}></div>
             <div className="tabContainer">
-              {sideBarData.externalTabs.map((tab) => {
+              {sideBarData.externalTabs.map((tab, i) => {
                 return (
                   <div
+                    key={i}
                     className={`sidebarTab ${
                       tab.icon === selectedId && "active"
                     }`}
@@ -197,6 +218,65 @@ const Sidebar = () => {
               })}
             </div>
             <div className="horizontalLine" style={{ margin: "10px 0" }}></div>
+            <div className="explore">
+              <h2 className="mainSidebarHead">Explore</h2>
+              {sideBarData.explore.map((tab) => {
+                return (
+                  <div className="sidebarTab" key={tab.head}>
+                    <span className="material-symbols-rounded">{tab.icon}</span>
+                    {tab.head}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="horizontalLine" style={{ margin: "10px 0" }}></div>
+            <div className="moreYoutube">
+              <h2 className="mainSidebarHead">More on Youtube</h2>
+              {sideBarData.moreYoutubes.map((tab) => {
+                return (
+                  <div className="youtubeTabs" key={tab.logo}>
+                    <img src={tab.logo} alt={tab.logo} />
+                    <p>{tab.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="horizontalLine" style={{ margin: "10px 0" }}></div>
+            <div className="tabContainer">
+              {sideBarData.settings.map((tab, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={`sidebarTab ${
+                      tab.icon === selectedId && "active"
+                    }`}
+                    onClick={() => setSelectedId(tab.icon)}
+                  >
+                    <span className="material-symbols-rounded">{tab.icon}</span>
+                    {tab.head}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="horizontalLine" style={{ margin: "10px 0" }}></div>
+
+            <div className="sidebarBottomLinks">
+              <Link to="/">About</Link>
+              <Link to="/">Press</Link>
+              <Link to="/">Copyright</Link>
+              <Link to="/">Contact</Link>
+              <Link to="/">Creator</Link>
+              <Link to="/">Advertise</Link>
+              <Link to="/">Developers</Link>
+            </div>
+            <div className="sidebarBottomLinks">
+              <Link to="/">Terms</Link>
+              <Link to="/">Privacy</Link>
+              <Link to="/">Policy &amp; Safety</Link>
+              <Link to="/">How Youtube works</Link>
+              <Link to="/">Test new features</Link>
+              <h3>&copy; Teenage Programmer</h3>
+            </div>
           </div>
         </div>
       </div>

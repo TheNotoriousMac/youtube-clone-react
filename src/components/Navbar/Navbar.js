@@ -6,13 +6,19 @@ const Navbar = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const [openNav, setOpenNav] = useState(false);
   const [search, setSearch] = useState();
+
+  const handleSidebar = () => {
+    const sidebarContainer = document.getElementById("sidebarContainer");
+    sidebarContainer.classList.toggle("close");
+  };
+
   return (
     <>
       <header>
         <div className="headerDiv">
           <div>
             <div className="humburger">
-              <div>
+              <div onClick={handleSidebar}>
                 <span></span>
                 <span></span>
                 <span></span>
